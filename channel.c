@@ -167,6 +167,10 @@ Channel* readAllChannels(int* channels_size, Program programs[], float *budget) 
                     channels[j].programs[j] = programs[pos];
                 }
 
+                fscanf(fp, "%d", &channels[j].num_sub);
+                for (i = 0; i < channels[j].num_sub; i++) {
+                    fscanf(fp, "%s", channels[j].subscribers[i]);
+                }
                 j++;
             }
         }
@@ -176,6 +180,24 @@ Channel* readAllChannels(int* channels_size, Program programs[], float *budget) 
 
     return NULL;
 }
+
+void listChannelByAudience(int channel_size, Channel channels[]){
+    int i, j, t = 0;
+    for (i = 0; i < channel_size; i++) {
+        for (j = i + 1; j < channel_size; j++) {
+            if (channels[i].num_sub < channels[j].num_sub) {
+                t = channels[i].num_sub;
+                channels[i].num_sub = channels[j].num_sub;
+                channels[j].num_sub = t;
+            }
+        }
+    }
+    // printing the output
+    for (i = 0; i < channel_size; i++) {
+        printf("%d ", channels[i]);
+    }
+}
+
 
 void saveChannelToFile(int channel_size, Channel channels[]) {
     FILE *fp;
@@ -195,9 +217,13 @@ void saveChannelToFile(int channel_size, Channel channels[]) {
             fprintf(fp, "%s", channels[i].name);
             fprintf(fp, "%f", channels[i].cost);
             fprintf(fp, "%d", channels[i].prog_length);
-
             for (j = 0; j < channels[i].prog_length; j++) {
                 fprintf(fp, "%s", channels[i].programs_str[j]);
+            }
+            //subscribers id
+            fprintf(fp, "%d\n", channels[i].num_sub);
+            for (j = 0; j < channels[i].prog_length; j++) {
+                fprintf(fp, "%s\n", channels[i].subscribers[j]);
             }
         }
 

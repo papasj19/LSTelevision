@@ -18,10 +18,11 @@ typedef struct {
     Program programs[12];
     String programs_str[12];
     int prog_length;
+    int num_sub;
     String subscribers[10];
 } Channel;
 
-
+void listChannelByAudience(int channel_size, Channel channels[]);
 
 Channel grabInfo(float* budget, Channel channels[], int channel_size); //Function to ask the user for information regarding the channel they want to create
 
