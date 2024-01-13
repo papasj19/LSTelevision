@@ -21,7 +21,7 @@ typedef struct {
 
 User* readAllUsers(int *users_size);
 
-void updateDatabaseUser(User* users[], int *user_size);
+void updateDatabaseUser(User users[], int user_size);
 
 User addNewUser(int mode);
 

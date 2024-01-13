@@ -14,7 +14,7 @@ User* readAllUsers(int *users_size) {
 	char aux;
     int i, j;
 
-    users = malloc(sizeof(User));
+    users = (User*) malloc(sizeof(User));
 	(*users_size) = 0;
 
     fp = fopen("userfile.txt", "r");
@@ -89,7 +89,7 @@ User* readAllUsers(int *users_size) {
 * @Returns: ----
 * @Author: Ivan Fernandez
 **************/
-void updateDatabaseUser(User *users[], int *user_size) {
+void updateDatabaseUser(User users[], int user_size) {
     FILE *fp;
     int i;
 
@@ -97,11 +97,11 @@ void updateDatabaseUser(User *users[], int *user_size) {
     if (fp != NULL) {
 
         // Save number of users
-        fprintf(fp, "%d\n\n", (*user_size));
+        fprintf(fp, "%d\n\n", user_size);
 
         // Save Users
-        for (i=0; i<(*user_size); i++) {
-            fprintf(fp, "%s\n%s\n%s\n%s\n\n", users[i]->id, users[i]->name, users[i]->email, users[i]->password);
+        for (i=0; i<user_size; i++) {
+            fprintf(fp, "%s\n%s\n%s\n%s\n\n", users[i].id, users[i].name, users[i].email, users[i].password);
         }
 
 

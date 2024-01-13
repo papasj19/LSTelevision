@@ -15,7 +15,7 @@ Actor* readAllActors(int *actors_size) {
 	char aux;
 
 
-	actors = malloc(sizeof(Actor));
+	actors = (Actor *) malloc(sizeof(Actor));
 	(*actors_size) = 1;
 
     fp = fopen("actorfile.txt", "r");
@@ -325,6 +325,7 @@ void actorsOptions(Actor *actors[], int *actors_size) {
 
             case '2':
                 (*actors_size)++;
+                actors = realloc(actors, (*actors_size * sizeof(Actor)));
                 (*actors)[(*actors_size)-1] = addNewActor((*actors), (*actors_size)-1);
                 break;
 
@@ -390,8 +391,6 @@ void manageActors(Actor *actors[], int mode, int *actors_size) {
                 }
             }
             i = 0;
-
-
 
             break;
 
@@ -490,7 +489,7 @@ void manageActors(Actor *actors[], int mode, int *actors_size) {
                     printf("Actor: %s, %s (%d)", actors[pos]->name, actors[pos]->surname, actors[pos]->phone);
 
                     //Shift all actors
-                    for (i=pos; i<(*actors_size); i++) {
+                    for (i=pos; i<(*actors_size)-1; i++) {
                         actors[i] = actors[i+1];
                     }
 					if ((*actors_size) > 1) {

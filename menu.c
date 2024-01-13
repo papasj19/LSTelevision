@@ -287,3 +287,14 @@ void searchClientByMenu() {
     printf("\t2.Search by email.\n");
     printf("\t3.Abort.\n");
 }
+
+void modifyUserMenu() {
+
+    printf("What needs to be modified?\n");
+    printf("\t1.Modify ID.\n");
+    printf("\t2.Modify Name.\n");
+    printf("\t3.Modify Mail.\n");
+    printf("\t4.Modify password.\n\n");
+    printf("\t5.Exit.\n");
+
+}

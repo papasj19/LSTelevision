@@ -18,6 +18,7 @@
 void manageClients(User *users[], int *users_size);
 void displayClients(User users[], int size);
 void manageClient(User *users[], int *users_size, int mode);
+void changeUser(User *users[], int *users_size, int pos);
 
 
 #endif //FOR_STORIES_CLIENT_H

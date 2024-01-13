@@ -160,7 +160,7 @@ int main(void){
     }
 
 
-    updateDatabaseUser(&users, &users_size);
+    updateDatabaseUser(users, users_size);
     updateDatabaseActors(&actors, &actors_size);
     free(users);
     free(actors);
