@@ -6,6 +6,7 @@
 #include <string.h>
 
 #include "channel.h"
+#include "creditCard.h"
 
 
 
@@ -29,7 +30,7 @@ void searchActorByMenu();
 
 void doMenu();
 
-void clientMainMenu(Program** programs, int* progams_size, Channel** channels, int* channels_size);
+void clientMainMenu(Program** programs, int* progams_size, Channel** channels, int* channels_size, CreditCard** cards, int* size_CC);
 
 int clientManageMenu();
 

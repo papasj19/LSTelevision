@@ -5,12 +5,13 @@
 #include "menu.h"
 #include "client.h"
 #include "channel.h"
+#include "creditCard.h"
 
 void modeMenu();
 void loginMenu();
 int checkMenuOption(char str[]);
 void runProducer(User** users, int *users_size, User* current_user, Actor** actors, int *actors_size);
-void runClient(Program** programs, int* progams_size, Channel** channels, int* channels_size);
+void runClient(Program** programs, int* progams_size, Channel** channels, int* channels_size, CreditCard** cards, int* size_CC);
 
 
 int main(void){
@@ -34,6 +35,9 @@ int main(void){
     float budget = 0;
 
 
+    CreditCard* creditCards;
+    int size_creditCards = 0;
+
     users = readAllUsers(&users_size);
     printf("users ");
     actors = readAllActors(&actors_size);
@@ -43,6 +47,9 @@ int main(void){
     printf("programs ");
     channels = readAllChannels(&channels_size,programs,&budget);
     printf("channels ");
+
+    creditCards = readAllCreditCard(&size_creditCards);
+    printf("credit cards: ");
 
     for (int i=0; i<users_size; i++) {
 
@@ -148,7 +155,7 @@ int main(void){
         if (current_user.type == PRODUCER) {
             runProducer(&users, &users_size, &current_user, &actors, &actors_size);
         } else {
-            runClient(&programs, &program_size, &channels, &channels_size);
+            runClient(&programs, &program_size, &channels, &channels_size, &creditCards, &size_creditCards);
         }
     }
 
@@ -242,9 +249,9 @@ void runProducer(User* users[], int *users_size, User* current_user, Actor* acto
 
 }
 
-void runClient(Program** programs, int* progams_size, Channel** channels, int* channels_size) {
+void runClient(Program** programs, int* progams_size, Channel** channels, int* channels_size, CreditCard** cards, int* size_CC) {
     printf("\nClient.\n");
-    clientMainMenu(programs, progams_size, channels,channels_size);
+    clientMainMenu(programs, progams_size, channels,channels_size,cards,size_CC);
 
 
 }

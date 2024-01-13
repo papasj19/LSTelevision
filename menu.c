@@ -198,8 +198,9 @@ int programSubMenu(){
 
 
 
-void clientMainMenu(Program** programs, int* progams_size, Channel** channels, int * channels_size){
+void clientMainMenu(Program** programs, int* progams_size, Channel** channels, int * channels_size, CreditCard** cards, int* size_CC){
     int input_choice = 0;
+    CreditCard temp;
     do {
         input_choice = askForInteger("1.Card | 2.Movies | 3.Channels | 4.Programs | 5.Exit\n> ");
         int flag = 0;
@@ -209,7 +210,7 @@ void clientMainMenu(Program** programs, int* progams_size, Channel** channels, i
                 do {
                     switch (addCardMenu()) {
                         case 1:
-                            //add credit card
+                            temp = addNewCard(cards,size_CC);
                             break;
                         case 2:
                             //add gift card
