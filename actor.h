@@ -8,7 +8,7 @@
 
 #include "format_checking.h"
 
-
+#define _OPEN_SYS_ITOA_EXT
 #define MAXCHAR 25
 
 typedef struct {

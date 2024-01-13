@@ -366,7 +366,8 @@ void manageActors(Actor *actors[], int mode, int *actors_size) {
     char id[MAXCHAR];
     char name[MAXCHAR];
     char surname[MAXCHAR];
-    char phone[MAXCHAR];
+    int phone;
+    char token[MAXCHAR];
     int i;
     int correct = 0;            //Bool to check input correctness
     int exit = 0;
@@ -392,6 +393,8 @@ void manageActors(Actor *actors[], int mode, int *actors_size) {
                 }
             }
             i = 0;
+
+            strcpy(token, id);
 
             break;
 
@@ -423,33 +426,34 @@ void manageActors(Actor *actors[], int mode, int *actors_size) {
             }
             i = 0;
 
+            strcpy(token, id);
+
             break;
 
         case '3':
-            printf("\nIntroduce the actor's phone number: ");
-            do {
-                scanf("%s", phone);
 
-                if (!checkInteger(phone)) {
-                    printf("\nIntroduce a valid phone number: ");
-                }
-
-            } while (!checkInteger(phone));
+            phone = askForInteger("\nIntroduce the actor's phone number: ");
 
             for (i=0; i<(*actors_size); i++) {
-                if (atoi(phone) == actors[i]->phone) {
+                if (phone == actors[i]->phone) {
                     pos = i;
                 }
             }
+
+            printf("\nPhone: %d", phone);
+            itoa(phone, token, 10);
+
             break;
 
         case '4':
             exit = 1;
+            pos = -2;
 			return;
             break;
 
         default:
             printf("\nInput a valid option (1, 2, 3, 4)");
+            pos = -2;
             break;
 
     }
@@ -504,7 +508,11 @@ void manageActors(Actor *actors[], int mode, int *actors_size) {
                     break;
             }
         }
-		}
+		} else {
+            if (pos == -1) {
+                printf("\nActor with attribute %s was not found in the system.\n", token);
+            }
+        }
 
     }
 
