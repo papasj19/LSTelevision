@@ -17,6 +17,8 @@ int checkInteger(char str[]);
 int askForInteger(char message[]);
 void stringToLower(char str[]);
 int uniquePhone(int phone, int phones[], int size);
+int checkFloat(char str[]);
+float askForFloat(char message[]);
 
 
 #endif //FOR_STORIES_FORMAT_CHECKING_H

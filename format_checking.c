@@ -22,6 +22,23 @@ int askForInteger(char message[]) {
 
 }
 
+
+float askForFloat(char message[]) {
+    char input[MAXCHAR];
+
+    printf("%s", message);
+    do {
+        scanf("%s", input);
+
+        if (!checkFloat(input)) {
+            printf("\nPlease, input a valid format: ");
+        }
+    } while (!checkFloat(input));
+
+    return atof(input);
+
+}
+
 /***********
  * @Purpose: Global function to check if an input is a character
  * @Parameters: in - str: string to check correctness
@@ -57,6 +74,42 @@ int checkInteger(char str[]) {
             flag++;
         }
     }
+
+    //If all numbers, then integer
+    if (flag == 0) {
+        return 1;
+    }
+
+    return 0;
+
+
+}
+
+
+int checkFloat(char str[]) {
+    int i = 0, flag = 0;
+    int saver = 0;
+
+    //Check for a non-number-character in the string
+    for (i=0; i<strlen(str); i++) {
+        if (str[i] < '0' || str[i] > '9') {
+            if(str[i] == '.'){
+                i = saver;
+                break;
+            }else {
+                flag++;
+            }
+        }
+    }
+    saver++;
+    //Check for a non-number-character in the string
+    for (i=saver; i<strlen(str); i++) {
+        if (str[i] < '0' || str[i] > '9') {
+            flag++;
+        }
+    }
+
+
 
     //If all numbers, then integer
     if (flag == 0) {

@@ -27,6 +27,7 @@ int main(void){
     int actors_size;
 
 
+
     users = readAllUsers(&users_size);
     actors = readAllActors(&actors_size);
 
