@@ -9,6 +9,8 @@
 #define MODIFY 0
 #define DELETE 1
 
+#include <corecrt.h>
+
 #include "user.h"
 #include "menu.h"
 #include "format_checking.h"

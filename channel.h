@@ -18,6 +18,7 @@ typedef struct {
     Program programs[12];
     String programs_str[12];
     int prog_length;
+    String subscribers[10];
 } Channel;
 
 

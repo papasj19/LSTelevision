@@ -104,11 +104,25 @@ void manageClient(User *users[], int *users_size, int mode) {
                 }
             }
 
-
             break;
 
         // Search By email
         case 2:
+
+            printf("Introduce the email: ");
+            scanf("%s", email);
+
+            for (i=0; i<(*users_size); i++) {
+                char to_check[MAXCHAR];
+
+                strcpy(to_check, users[i]->email);
+
+                if (!strcmp(to_check, email)) {
+                    pos = i;
+                }
+            }
+
+
             break;
 
         default:
@@ -116,6 +130,10 @@ void manageClient(User *users[], int *users_size, int mode) {
             break;
 
     }
+
+
+
+
 
 
 }
