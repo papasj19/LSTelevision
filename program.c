@@ -476,23 +476,21 @@ void dismissActor(int programs_size, Program programs[], Actor* actors, int *act
         printf("There is no program with the name: %s\n", prog_name);
         return;
     }
-
+    //remove the program from the actor
     strcpy(actors[pos].program, "");
-
     count = -1;
     j = 0;
-    for (i = 0; i < programs_size; i++) {
-
-        if (strcmp(programs[prog_pos].actors[i], actors[pos].name) != 0) {
-            strcpy(new_actors_str[j], programs[prog_pos].actors[i]);
-            strcpy(new_actors[j].name, programs[prog_pos].actors[i]);
-            j++;
+    int auxpos = 0;
+    for (i = 0; i < 3; i++) {
+        int temp = atoi(programs[prog_pos].actors[i]);
+        if (actors[pos].id == temp) {
+            strcpy(programs[prog_pos].actors[i],"");
+            auxpos = i;
         }
     }
-
-    //programs[prog_pos].actors->name = new_actors_str;
-    for (i=0; i<MAXACTORS; i++) {
-        strcpy(programs[prog_pos].actors[i], actors[i].name);
+    for(i = auxpos; i < 2; i++){
+        strcpy(programs[prog_pos].actors[i],programs[prog_pos].actors[i+1]);
     }
+    strcpy(programs[prog_pos].actors[2],"");
 
 }
