@@ -14,4 +14,6 @@ add_executable(For_Stories main.c
         menu.c
         client.h
         client.c
-        channel.c)
+        channel.c
+        subscribe.h
+        subscribe.c)

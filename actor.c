@@ -363,7 +363,7 @@ void manageActors(Actor *actors[], int mode, int *actors_size) {
     char confirmation[MAXCHAR];
     int pos = -1;
     char tmp[MAXCHAR];
-    char id[MAXCHAR];
+    int id;
     char name[MAXCHAR];
     char surname[MAXCHAR];
     int phone;
@@ -379,22 +379,19 @@ void manageActors(Actor *actors[], int mode, int *actors_size) {
 
     switch (unt_option[0]) {
         case '1':
-            printf("\nIntroduce the actor's ID: ");
-            do {
-                scanf("%s", id);
-                if (!checkInteger(id)) {
-                    printf("\nIntroduce a correct ID (Integer): ");
-                }
-            } while (!checkInteger(id));
+
+            id = askForInteger("\nIntroduce the actor's ID: ");
 
             for (i=0; i<(*actors_size); i++) {
-                if (atoi(id) == actors[i]->id) {
+                int to_check = actors[i]->id;
+
+                if (to_check == id) {
                     pos = i;
                 }
             }
             i = 0;
 
-            strcpy(token, id);
+
 
             break;
 
@@ -426,7 +423,7 @@ void manageActors(Actor *actors[], int mode, int *actors_size) {
             }
             i = 0;
 
-            strcpy(token, id);
+            strcpy(token, name);
 
             break;
 
@@ -435,12 +432,13 @@ void manageActors(Actor *actors[], int mode, int *actors_size) {
             phone = askForInteger("\nIntroduce the actor's phone number: ");
 
             for (i=0; i<(*actors_size); i++) {
-                if (phone == actors[i]->phone) {
+                int to_check = actors[i]->phone;
+
+                if (phone == to_check) {
                     pos = i;
                 }
             }
 
-            printf("\nPhone: %d", phone);
             itoa(phone, token, 10);
 
             break;
