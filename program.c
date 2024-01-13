@@ -58,6 +58,62 @@ Program addNewProgram(){
     return temp;
 }
 
+void displayProgramsByChannel(Program programs[], int program_size, String channel_name) {
+    int i, j;
+
+    for (i = 0; i < program_size; i++) {
+        if(strcmp(programs[i].channel_name, channel_name) == 0) {
+
+            //get current time from lib
+
+
+            printf("%s\n", programs[i].name);
+            printf("%d minutes.\n", programs[i].duration);
+
+            for (j = 0; j < programs[i].num_actors; j++) {
+                printf("\t>%s\n", programs[i].actors[j]);
+            }
+
+            switch (programs[i].category) {
+                case 0:
+                    printf("Comedy\n");
+                    break;
+                case 1:
+                    printf("Tragedy\n");
+                    break;
+                case 2:
+                    printf("SitCom\n");
+                    break;
+                case 3:
+                    printf("Documentary\n");
+                    break;
+                case 4:
+                    printf("Drama\n");
+                    break;
+                case 5:
+                    printf("Fiction\n");
+                    break;
+                case 6:
+                    printf("Comedy");
+                    break;
+                case 7:
+                    printf("SciFi\n");
+                    break;
+                case 8:
+                    printf("Historical\n");
+                    break;
+                case 9:
+                    printf("Cooking\n");
+                    break;
+                case 10:
+                    printf("Other\n");
+                    break;
+            }
+        }
+    }
+
+}
+
 
 
 void displayPrograms(Program programs[], int program_size) {
