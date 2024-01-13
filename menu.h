@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "channel.h"
+
 
 
 void mainMenu();
@@ -26,6 +28,8 @@ void manageActorsMenu();
 void searchActorByMenu();
 
 void doMenu();
+
+void clientMainMenu(Program** programs, int* progams_size, Channel** channels, int* channels_size);
 
 int clientManageMenu();
 

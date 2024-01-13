@@ -1,4 +1,5 @@
 #include "actor.h"
+#include "menu.h"
 
 /**************
  * @Purpose: Get the actors from the database

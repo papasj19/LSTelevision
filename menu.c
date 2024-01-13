@@ -153,12 +153,109 @@ void doMenu(){
 }
 
 
-
-
-void clientMainMenu(){
-
-        printf("1.Card | 2.Movies | 3.Channels | 4 Programs");
+int addCardMenu(){
+    int input_choice = 0;
+    int flag = 0;
+    do{
+        flag = 0;
+        input_choice = askForInteger("1.Credit Card | 2.Gift Card | 3.Exit");
+        if(input_choice > 3 || input_choice < 1){
+            printf("input undesirable\n");
+            flag = 1;
+        }
+    }while(flag == 1);
+    return input_choice;
 }
+
+int channelSubMenu(){
+    int input_choice = 0;
+    int flag = 0;
+    do{
+        flag = 0;
+        input_choice = askForInteger("1.List | 2.Subscribe | 3.Cancel Sub | 4.List Programs on Channel | 5.Exit");
+        if(input_choice > 5 || input_choice < 1){
+            printf("input undesirable\n");
+            flag = 1;
+        }
+    }while(flag == 1);
+    return input_choice;
+}
+
+int programSubMenu(){
+    int input_choice = 0;
+    int flag = 0;
+    do{
+        flag = 0;
+        input_choice = askForInteger("1.Filter | 2.Search | 3.View Planning | 4.Download Planning | 5.List Current | 6.Exit");
+        if(input_choice > 6 || input_choice < 1){
+            printf("input undesirable\n");
+            flag = 1;
+        }
+    }while(flag == 1);
+    return input_choice;
+}
+
+
+
+
+void clientMainMenu(Program** programs, int* progams_size, Channel** channels, int * channels_size){
+    int input_choice = 0;
+    do {
+        input_choice = askForInteger("1.Card | 2.Movies | 3.Channels | 4.Programs | 5.Exit");
+        int flag = 0;
+        switch (input_choice) {
+            //card menu
+            case 1:
+                do {
+                    switch (addCardMenu()) {
+                        case 1:
+                            //add credit card
+                            break;
+                        case 2:
+                            //add gift card
+                            break;
+                        case 3:
+                            flag = 1;
+                            break;
+                    }
+                }while(flag == 0);
+                flag = 0;
+                break;
+            case 2:
+                //movies
+                break;
+            case 3:
+                channelSubMenu();
+                break;
+            case 4:
+                do {
+                    switch (programSubMenu()) {
+                        case 1:
+                            searchByFilter(*programs,*progams_size);
+                            break;
+                        case 2:
+                            //search
+                            break;
+                        case 3:
+                            //View
+                            break;
+                        case 4:
+                            //download
+                            break;
+                        case 5:
+                            displayPrograms(*programs,*progams_size);
+                            break;
+                        case 6:
+                            flag = 1;
+                            break;
+                    }
+                }while(flag == 0);
+                flag = 0;
+                break;
+        }
+    }while(input_choice != 5);
+}
+
 
 
 void manageClientMenu() {

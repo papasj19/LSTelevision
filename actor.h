@@ -7,7 +7,6 @@
 #include <ctype.h>
 
 #include "format_checking.h"
-#include "menu.h"
 
 
 #define MAXCHAR 25

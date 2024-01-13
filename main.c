@@ -4,12 +4,13 @@
 #include "actor.h"
 #include "menu.h"
 #include "client.h"
+#include "channel.h"
 
 void modeMenu();
 void loginMenu();
 int checkMenuOption(char str[]);
 void runProducer(User** users, int *users_size, User* current_user, Actor** actors, int *actors_size);
-void runClient(User** users, User* current_user);
+void runClient(Program** programs, int* progams_size, Channel** channels, int* channels_size);
 
 
 int main(void){
@@ -26,10 +27,18 @@ int main(void){
     int users_size;
     int actors_size;
 
+    Program* programs;
+    Channel* channels;
+    int program_size = 0;
+    int channels_size = 0;
+    float budget = 0;
 
 
     users = readAllUsers(&users_size);
     actors = readAllActors(&actors_size);
+
+    programs = readAllPrograms(&program_size);
+    channels = readAllChannels(&channels_size,programs,&budget);
 
     for (int i=0; i<users_size; i++) {
 
@@ -135,7 +144,7 @@ int main(void){
         if (current_user.type == PRODUCER) {
             runProducer(&users, &users_size, &current_user, &actors, &actors_size);
         } else {
-            runClient(&users, &current_user);
+            runClient(&programs, &program_size, &channels, &channels_size);
         }
     }
 
@@ -144,6 +153,8 @@ int main(void){
     updateDatabaseActors(&actors, &actors_size);
     free(users);
     free(actors);
+    free(channels);
+    free(programs);
 
     return 0;
 }
@@ -227,8 +238,10 @@ void runProducer(User* users[], int *users_size, User* current_user, Actor* acto
 
 }
 
-void runClient(User** users, User* current_user) {
+void runClient(Program** programs, int* progams_size, Channel** channels, int* channels_size) {
     printf("\nClient.\n");
+    clientMainMenu(programs, progams_size, channels,channels_size);
+
 
 }
 
