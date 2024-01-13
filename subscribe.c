@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "subscribe.h"
+#include "user.h"
+#include "channel.h"
+
 #define MAX_CHAR 25
 
 /************************
@@ -60,9 +64,9 @@ int checkPin(char* pin, User current_user) {
 
         } else {
         //If the pin is a valid integer, check if it matches with the credit card one
-            if (current_user.card.pin == atoi(pin)) {
+           // if (current_user.card.pin == atoi(pin)) {
                 correct = 1;
-            }
+           // }
 
         }
 
@@ -94,15 +98,15 @@ void saveSubscriptionDatabase (User current_user,  Channel current_channel) {
 
 
         //Loop that searches for the user in the file, to check if its his/her first subscription
-        fgets(file_mail, MAX_CHAR, fp);
+        fgets(file_email, MAX_CHAR, fp);
         while (!feof(fp) && aux == 0) {
             //If the user was already subscribe to something
-            if (!strcmp(file_mail, current_user.email)) {
+            if (!strcmp(file_email, current_user.email)) {
                 fscanf(fp, "%d", &num_subs);
                 aux = 1;
             }
 
-            fgets(file_mail, MAX_CHAR, fp);
+            fgets(file_email, MAX_CHAR, fp);
         }
 
 
@@ -114,14 +118,15 @@ void saveSubscriptionDatabase (User current_user,  Channel current_channel) {
             fseek(fp, -2, SEEK_CUR);
 
             //get email
-            fgets(file_mail, MAX_CHAR, fp);
+            fgets(file_email, MAX_CHAR, fp);
 
             //Write the number of subscriptions
             fprintf(fp, "%d", (num_subs++));
 
             //Write the new channel subscription
             fseek(fp, num_subs, SEEK_CUR);
-            fprintf(current_channel.name, 1, sizeof(current_channel.name), fp);
+            //fprintf(current_channel.name, 1, sizeof(current_channel.name), fp);
+
         }
 
 

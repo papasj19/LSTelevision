@@ -8,7 +8,7 @@
 #include "user.h"
 #include "channel.h"
 
-int subscribeToChannel(User current_user, Channel current_channel);
+void subscribeToChannel(User current_user, Channel current_channel);
 int checkPin(char* pin, User current_user);
 void saveSubscriptionDatabase(User current_user, Channel current_channel);
 
