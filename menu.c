@@ -158,7 +158,7 @@ int addCardMenu(){
     int flag = 0;
     do{
         flag = 0;
-        input_choice = askForInteger("1.Credit Card | 2.Gift Card | 3.Exit");
+        input_choice = askForInteger("1.Credit Card | 2.Gift Card | 3.Exit\n> ");
         if(input_choice > 3 || input_choice < 1){
             printf("input undesirable\n");
             flag = 1;
@@ -172,7 +172,7 @@ int channelSubMenu(){
     int flag = 0;
     do{
         flag = 0;
-        input_choice = askForInteger("1.List | 2.Subscribe | 3.Cancel Sub | 4.List Programs on Channel | 5.Exit");
+        input_choice = askForInteger("1.List | 2.Subscribe | 3.Cancel Sub | 4.List Programs on Channel | 5.Exit\n> ");
         if(input_choice > 5 || input_choice < 1){
             printf("input undesirable\n");
             flag = 1;
@@ -186,7 +186,7 @@ int programSubMenu(){
     int flag = 0;
     do{
         flag = 0;
-        input_choice = askForInteger("1.Filter | 2.Search | 3.View Planning | 4.Download Planning | 5.List Current | 6.Exit");
+        input_choice = askForInteger("1.Filter | 2.Search | 3.View Planning | 4.Download Planning | 5.List Current | 6.Exit\n> ");
         if(input_choice > 6 || input_choice < 1){
             printf("input undesirable\n");
             flag = 1;
@@ -201,7 +201,7 @@ int programSubMenu(){
 void clientMainMenu(Program** programs, int* progams_size, Channel** channels, int * channels_size){
     int input_choice = 0;
     do {
-        input_choice = askForInteger("1.Card | 2.Movies | 3.Channels | 4.Programs | 5.Exit");
+        input_choice = askForInteger("1.Card | 2.Movies | 3.Channels | 4.Programs | 5.Exit\n> ");
         int flag = 0;
         switch (input_choice) {
             //card menu
@@ -225,7 +225,25 @@ void clientMainMenu(Program** programs, int* progams_size, Channel** channels, i
                 //movies
                 break;
             case 3:
-                channelSubMenu();
+                do {
+                    switch (channelSubMenu()) {
+                        case 1:
+                            //list channel
+                            break;
+                        case 2:
+                            //subscribe to channel
+                            break;
+                        case 3:
+                            //cancel sub
+                            break;
+                        case 4:
+                            //list progs on channel
+                            break;
+                        case 5:
+                            flag = 1;
+                            break;
+                    }
+                }while(flag == 0);
                 break;
             case 4:
                 do {
