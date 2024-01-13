@@ -35,10 +35,14 @@ int main(void){
 
 
     users = readAllUsers(&users_size);
+    printf("users ");
     actors = readAllActors(&actors_size);
+    printf("actors ");
 
     programs = readAllPrograms(&program_size);
+    printf("programs ");
     channels = readAllChannels(&channels_size,programs,&budget);
+    printf("channels ");
 
     for (int i=0; i<users_size; i++) {
 

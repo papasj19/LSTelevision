@@ -35,5 +35,7 @@ int clientManageMenu();
 
 void manageClientMenu();
 
+void searchClientByMenu();
+
 
 #endif

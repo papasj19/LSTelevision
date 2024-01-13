@@ -1,0 +1,17 @@
+3
+
+P0
+Ivan
+ivan@mail.com
+word
+
+C1
+Conrado
+conry@open.gl
+ILoveOpenGL
+
+P2
+Spencer
+sexy@mail.com
+dude
+

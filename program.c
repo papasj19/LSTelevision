@@ -6,9 +6,7 @@
 //
 
 #include "program.h"
-#include "channel.h"
 
-#define MAXACTORS 3
 
 int searchProgram(String programs_str){
     return 0;
@@ -52,7 +50,7 @@ Program addNewProgram(){
         temp.num_actors = askForInteger("How many actors?: ");
         for(int i = 0; i < temp.num_actors; i++){
             printf("Enter the actor name: ");
-            scanf("%s", temp.actors[i].name);
+            scanf("%s", temp.actors[i]);
         }
     }else{
         temp.num_actors = 0;
@@ -70,7 +68,7 @@ void displayPrograms(Program programs[], int program_size) {
         printf("%d minutes.\n", programs[i].duration);
 
         for (j = 0; j < programs[i].num_actors; j++) {
-            printf("\t>%s\n", programs[i].actors[j].name);
+            printf("\t>%s\n", programs[i].actors[j]);
         }
 
         switch (programs[i].category) {
@@ -354,7 +352,7 @@ Program* readAllPrograms(int* programs_size) {
             fscanf(fp, "%c", &trash);
 
             for (j = 0; j < programs[i].num_actors; j++) {
-                fscanf(fp, "%s", programs[i].actors[j].name);
+                fscanf(fp, "%s", programs[i].actors[j]);
                 fscanf(fp, "%c", &trash);
             }
         }
@@ -362,6 +360,8 @@ Program* readAllPrograms(int* programs_size) {
 
     return programs;
 }
+
+
 
 //Saves the array into the file (rewrites the file)
 void saveToFile(int programs_size, Program programs[]) {
@@ -375,17 +375,17 @@ void saveToFile(int programs_size, Program programs[]) {
     }
 
     else {
-        fprintf(fp, "%d", programs_size);
+        fprintf(fp, "%d\n\n", programs_size);
 
         for (i = 0; i < programs_size; i++) {
             fprintf(fp,"%s\n", programs[i].name);
-            //fscanf(fp,"%s", programs[i].channel_name);
+            fprintf(fp,"%s\n", programs[i].channel_name);
             fprintf(fp,"%d\n", programs[i].category);
             fprintf(fp, "%d\n", programs[i].duration);
             fprintf(fp, "%d\n", programs[i].num_actors);
 
             for (j = 0; j < programs[i].num_actors; j++) {
-                fprintf(fp, "%s ", programs[i].actors[j].name);
+                fprintf(fp, "%s ", programs[i].actors[j]);
             }
         }
 
@@ -427,13 +427,16 @@ void dismissActor(int programs_size, Program programs[], Actor* actors, int *act
     j = 0;
     for (i = 0; i < programs_size; i++) {
 
-        if (strcmp(programs[prog_pos].actors[i].name, actors[pos].name) != 0) {
-            strcpy(new_actors_str[j], programs[prog_pos].actors[i].name);
-            new_actors[j] = programs[prog_pos].actors[i];
+        if (strcmp(programs[prog_pos].actors[i], actors[pos].name) != 0) {
+            strcpy(new_actors_str[j], programs[prog_pos].actors[i]);
+            strcpy(new_actors[j].name, programs[prog_pos].actors[i]);
             j++;
         }
     }
 
     //programs[prog_pos].actors->name = new_actors_str;
-    programs[prog_pos].actors = new_actors;
+    for (i=0; i<MAXACTORS; i++) {
+        strcpy(programs[prog_pos].actors[i], actors[i].name);
+    }
+
 }

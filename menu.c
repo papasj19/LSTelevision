@@ -280,6 +280,9 @@ void manageClientMenu() {
     printf("\n1.Modify a Client | 2.Delete a Client | 3.Display Clients | 4.Go Back\n");
 }
 
-void searchClientBy() {
-    printf("a");
+void searchClientByMenu() {
+    printf("Find the client by:\n");
+    printf("\t1.Search by ID.\n");
+    printf("\t2.Search by email.\n");
+    printf("\t3.Abort.\n");
 }

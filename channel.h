@@ -6,6 +6,7 @@
 #include <string.h>
 
 #include "program.h"
+#include "format_checking.h"
 
 #define MAXCHAR 25
 

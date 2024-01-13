@@ -37,8 +37,8 @@ void manageClients(User *users[], int *users_size) {
             case 3:
 
                 for (i=0; i<(*users_size); i++) {
-                    if (users[1]->type == CLIENT) {
-                        printf("\n(%s) %s [%s]\n", users[1]->id, users[1]->name, users[1]->email);
+                    if (users[i]->type == CLIENT) {
+                        printf("\n(%s) %s [%s]\n", users[i]->id, users[i]->name, users[i]->email);
                     }
                 }
 

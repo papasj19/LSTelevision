@@ -8,6 +8,7 @@
 #include "actor.h"
 #include "limits.h"
 
+#define MAXACTORS 3
 #define MAXCHAR 25
 
 #define COMEDY 0
@@ -27,7 +28,7 @@ typedef char String[MAXCHAR];
 
 typedef struct {
     String name;
-    Actor *actors;
+    String actors[3];
     int time_broadcast;
     String channel_name;
     int num_actors;
