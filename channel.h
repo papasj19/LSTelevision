@@ -6,6 +6,7 @@
 #include <string.h>
 
 #include "program.h"
+#include "user.h"
 #include "format_checking.h"
 
 #define MAXCHAR 25
@@ -15,12 +16,13 @@ typedef char String[MAXCHAR];
 typedef struct {
     char name[MAXCHAR];
     float cost;
-    Program programs[12];
     String programs_str[12];
     int prog_length;
     int num_sub;
     String subscribers[10];
 } Channel;
+
+void searchPrograms(int channel_size, Channel channels[], User current_user);
 
 void listChannelByAudience(int channel_size, Channel channels[]);
 

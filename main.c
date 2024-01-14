@@ -11,7 +11,7 @@ void modeMenu();
 void loginMenu();
 int checkMenuOption(char str[]);
 void runProducer(User** users, int *users_size, User* current_user, Actor** actors, int *actors_size);
-void runClient(Program** programs, int* progams_size, Channel** channels, int* channels_size, CreditCard** cards, int* size_CC);
+void runClient(Program** programs, int* progams_size, Channel** channels, int* channels_size, CreditCard** cards, int* size_CC, User* current_user);
 
 
 int main(void){
@@ -155,7 +155,7 @@ int main(void){
         if (current_user.type == PRODUCER) {
             runProducer(&users, &users_size, &current_user, &actors, &actors_size);
         } else {
-            runClient(&programs, &program_size, &channels, &channels_size, &creditCards, &size_creditCards);
+            runClient(&programs, &program_size, &channels, &channels_size, &creditCards, &size_creditCards,  &current_user);
         }
     }
 
@@ -249,10 +249,8 @@ void runProducer(User* users[], int *users_size, User* current_user, Actor* acto
 
 }
 
-void runClient(Program** programs, int* progams_size, Channel** channels, int* channels_size, CreditCard** cards, int* size_CC) {
+void runClient(Program** programs, int* progams_size, Channel** channels, int* channels_size, CreditCard** cards, int* size_CC, User* current_user) {
     printf("\nClient.\n");
-    clientMainMenu(programs, progams_size, channels,channels_size,cards,size_CC);
-
-
+    clientMainMenu(programs, progams_size, channels,channels_size,cards,size_CC, current_user);
 }
 

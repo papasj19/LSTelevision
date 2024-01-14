@@ -198,7 +198,7 @@ int programSubMenu(){
 
 
 
-void clientMainMenu(Program** programs, int* progams_size, Channel** channels, int * channels_size, CreditCard** cards, int* size_CC){
+void clientMainMenu(Program** programs, int* progams_size, Channel** channels, int * channels_size, CreditCard** cards, int* size_CC, User* current_user){
     int input_choice = 0;
     CreditCard temp;
     do {
@@ -253,7 +253,7 @@ void clientMainMenu(Program** programs, int* progams_size, Channel** channels, i
                             searchByFilter(*programs,*progams_size);
                             break;
                         case 2:
-                            //search
+                            searchPrograms(*channels_size, *channels, *current_user);
                             break;
                         case 3:
                             //View

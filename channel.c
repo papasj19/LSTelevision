@@ -162,9 +162,6 @@ Channel* readAllChannels(int* channels_size, Program programs[], float *budget) 
 
                 for (i = 0; i < channels[j].prog_length; i++) {
                     fscanf(fp, "%s", channels[j].programs_str[i]);
-
-                    int pos = searchProgram(channels[j].programs_str[i]);
-                    channels[j].programs[j] = programs[pos];
                 }
 
                 fscanf(fp, "%d", &channels[j].num_sub);
@@ -181,6 +178,32 @@ Channel* readAllChannels(int* channels_size, Program programs[], float *budget) 
     return NULL;
 }
 
+void searchPrograms(int channel_size, Channel channels[], User current_user){
+    Channel subed[channel_size];
+    int countersubed = 0;
+    for(int i = 0; i < channel_size; i++){
+        for(int j = 0; j < channels[i].num_sub; j++) {
+            if (strcmp(channels[i].subscribers[j],current_user.name)==0) {
+                subed[countersubed] = channels[i];
+                countersubed++;
+            }
+        }
+    }
+    for(int k = 0; k < countersubed; k++){
+        printf("\nChannel %d: %s\nPrograms:", k+1, subed[k].name);
+        for (int i = 0; i < subed[k].prog_length; i++) {
+            for (int j = i+1; j < subed[k].prog_length; j++)
+                if (strcmp(subed[k].programs_str[i], subed[k].programs_str[j]) > 0) {
+                    char* temp;
+                    strcpy(temp,subed[k].programs_str[i]);
+                    strcpy(subed[k].programs_str[i],subed[k].programs_str[j]);
+                    strcpy(subed[k].programs_str[j],temp);
+                }
+            printf("\n\t%d) %s",i+1, subed[k].programs_str[i]);
+        }
+    }
+}
+
 void listChannelByAudience(int channel_size, Channel channels[]){
     int i, j, t = 0;
     for (i = 0; i < channel_size; i++) {
@@ -194,7 +217,7 @@ void listChannelByAudience(int channel_size, Channel channels[]){
     }
     // printing the output
     for (i = 0; i < channel_size; i++) {
-        printf("%i: %d ",i+1, channels[i].num_sub);
+        printf("%i: %s (%d) ",i+1,channels[i].name, channels[i].num_sub);
     }
 }
 

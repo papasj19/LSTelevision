@@ -30,7 +30,7 @@ void searchActorByMenu();
 
 void doMenu();
 
-void clientMainMenu(Program** programs, int* progams_size, Channel** channels, int* channels_size, CreditCard** cards, int* size_CC);
+void clientMainMenu(Program** programs, int* progams_size, Channel** channels, int* channels_size, CreditCard** cards, int* size_CC, User* current_user);
 
 int clientManageMenu();
 
