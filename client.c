@@ -1,6 +1,7 @@
-//
-// Created by ivanf_uunngm1 on 1/13/2024.
-//
+/*********************************************************
+ * @Purpose: Allow producers to manage the client accounts
+ * @Author: Ivan Fernandez
+ ********************************************************/
 
 #include "client.h"
 
@@ -57,7 +58,13 @@ void manageClients(User *users[], int *users_size) {
 } // End of Manage Client
 
 
-
+/*******************
+ * @Purpose: Display all clients information
+ * @Parameters: in - users: array with all users
+ *                 - users_size: number of users
+ * @Return: ----
+ * @Author: Ivan Fernandez
+ *******************/
 void displayClients(User users[], int size) {
     int i;
 
@@ -69,6 +76,15 @@ void displayClients(User users[], int size) {
 }
 
 
+/*******************
+ * @Purpose: Select a user and modify its attributes
+ * @Parameters: in - users: array with all users
+ *                 - users_size: number of users
+ *                 - mode: indicates if the producer wants to
+ *                          modify or delete the client
+ * @Return: ----
+ * @Author: Ivan Fernandez
+ *******************/
 void manageClient(User *users[], int *users_size, int mode) {
     int pos = -1;
     int i;
@@ -189,9 +205,18 @@ void manageClient(User *users[], int *users_size, int mode) {
     } while (pos != -2);
 
 
-} // Manage Client
+} // end of Manage Client
 
 
+
+/*******************
+ * @Purpose: Changes the user attributes
+ * @Parameters: in - users: array with all users
+ *                 - users_size: number of users
+ *                 - pos: position of the user to change in the array
+ * @Return: ----
+ * @Author: Ivan Fernandez
+ *******************/
 void changeUser(User *users[], int *users_size, int pos) {
     int option;
     String name;

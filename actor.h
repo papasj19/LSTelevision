@@ -7,6 +7,7 @@
 #include <ctype.h>
 
 #include "format_checking.h"
+#include "budget.h"
 
 #define _OPEN_SYS_ITOA_EXT
 #define MAXCHAR 25
@@ -36,7 +37,7 @@ void displayUnemployedActors(Actor actors[], int *actors_size);
 
 int getActorFromUser(Actor *actors[], int *actors_size);
 
-void hireActor(Actor *actors[], char program[], int pos);
+void hireActor(Actor *actors[], char program[], int pos, float *budget);
 
 void actorsOptions(Actor *actors[], int *actors_size);
 

@@ -1,3 +1,8 @@
+/*************************************************************************
+ * @Authors: Spencer, Ivan Fernandez
+ * @Purpose: print and concatenate the different program functionalities
+ ************************************************************************/
+
 
 #include "menu.h"
 

@@ -6,11 +6,12 @@
 #include "client.h"
 #include "channel.h"
 #include "creditCard.h"
+#include "budget.h"
 
 void modeMenu();
 void loginMenu();
 int checkMenuOption(char str[]);
-void runProducer(User** users, int *users_size, User* current_user, Actor** actors, int *actors_size);
+void runProducer(User** users, int *users_size, User* current_user, Actor** actors, int *actors_size, float *budget);
 void runClient(Program** programs, int* progams_size, Channel** channels, int* channels_size, CreditCard** cards, int* size_CC, User* current_user);
 
 
@@ -28,11 +29,13 @@ int main(void){
     int users_size;
     int actors_size;
 
+    float budget = getBudgetsInSystem();
+
     Program* programs;
     Channel* channels;
     int program_size = 0;
     int channels_size = 0;
-    float budget = 0;
+
 
 
     CreditCard* creditCards;
@@ -153,7 +156,7 @@ int main(void){
 
     if (!exit) {
         if (current_user.type == PRODUCER) {
-            runProducer(&users, &users_size, &current_user, &actors, &actors_size);
+            runProducer(&users, &users_size, &current_user, &actors, &actors_size, &budget);
         } else {
             runClient(&programs, &program_size, &channels, &channels_size, &creditCards, &size_creditCards,  &current_user);
         }
@@ -207,7 +210,7 @@ int checkMenuOption(char str[]) {
     return 0;
 }
 
-void runProducer(User* users[], int *users_size, User* current_user, Actor* actors[], int *actors_size) {
+void runProducer(User* users[], int *users_size, User* current_user, Actor* actors[], int *actors_size, float *budget) {
     int exit = 0;
     int action;
 
@@ -222,7 +225,7 @@ void runProducer(User* users[], int *users_size, User* current_user, Actor* acto
                 manageClients(users, users_size);
                 break;
             case 2:
-                //budget
+                checkBudget(budget);
                 break;
             case 3:
                 // input_choice = channelMenu();

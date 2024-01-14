@@ -1,11 +1,8 @@
-//
-// Created by ivanf_uunngm1 on 1/14/2024.
-//
 
 #include "budget.h"
 
 /*-----------------------------------------------------------------------------------------------------------------------------
- Author: Alan
+ Author: Alan, Ivan
  Input: void
  Output: void
  Functionality: prints out all the expenses and revenue then calculates budget and prints that out as well
@@ -68,13 +65,14 @@ void checkBudget(float *budget) {
     printf("\n\nYour current budget is %f euros.\n", budget);
 }
 
-/*
- Description: utilized to load the budgets from the files
- Return: a pointer to the array with the budgets
- Param: n/a
- Author: Spencer
 
- */
+
+/*********************************************************************
+ * @Purpose: Get the budget from the persistence file
+ * @Parameters: ----
+ * @Returns: the current budget of LSTelevision
+ * @Author: Spencer
+ *********************************************************************/
 float getBudgetsInSystem() {
     FILE* fp;
     float budget = 0;
@@ -94,7 +92,15 @@ float getBudgetsInSystem() {
 }
 
 
-void registerExpense(String item, float money) {
+
+/*********************************************************************
+ * @Purpose: Register the expense in the database
+ * @Parameters: in: item = string specifying the type of expense
+ *              in: money = cost of the expense, to be withdrawn from budget
+ * @Returns: ----
+ * @Author: Ivan Fernandez
+ *********************************************************************/
+void registerExpense(char item[], float money) {
     FILE *fp;
 
     fp = fopen("expenses.txt", "a");
@@ -108,7 +114,15 @@ void registerExpense(String item, float money) {
 
 }
 
-void registerIncome(String item, float money) {
+
+/*********************************************************************
+ * @Purpose: Register the revenue in the database
+ * @Parameters: in: item = string specifying the type of revenue
+ *              in: money = revenue obtained, to be added to budget
+ * @Returns: ----
+ * @Author: Ivan Fernandez
+ *********************************************************************/
+void registerIncome(char item[], float money) {
     FILE *fp;
 
     fp = fopen("revenue.txt", "a");

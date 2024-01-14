@@ -284,12 +284,17 @@ int getActorFromUser(Actor *actors[], int *actors_size) {
  * @Returns: ----
  * @Author Ivan Fernandez
  ************/
-void hireActor(Actor *actors[], char program[], int pos) {
+void hireActor(Actor *actors[], char program[], int pos, float *budget) {
 
-    if (pos != -1) {
+    if (pos > -1) {
         strcpy(actors[pos]->program, program);
         printf("\n%s %s (%d) is now in %s\n", actors[pos]->name,
                actors[pos]->surname, actors[pos]->id, program);
+
+        // Update Budget
+        (*budget) -= (float) actors[pos]->salary;
+        registerExpense("Hiring", (float) (actors[pos]->salary));
+
     } else {
         printf("(ERROR). Hire actor aborted... No actor hired\n");
     }

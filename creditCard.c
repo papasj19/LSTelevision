@@ -1,3 +1,9 @@
+/***********************************************
+ * @Author: Spencer
+ * @Purpose: Manage the different options related to the Credit Cards
+ */
+
+
 #include "creditCard.h"
 
 

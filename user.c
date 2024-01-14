@@ -111,7 +111,14 @@ void updateDatabaseUser(User users[], int user_size) {
 
 }
 
-//function to obtain the information required to create a new user l
+/*******************************************************************
+* @Purpose: Build new user based on the program user input
+* @Parameters: in: mode = specifies if the program is running
+*                  in client or producer mode, to set the
+*                  user account as one or other
+* @Returns: ----
+* @Author: Spencer
+********************************************************************/
  User addNewUser(int mode){
     User new_user;
     char tmp[MAXCHAR];
@@ -173,6 +180,7 @@ User registerNewUser(int *valid, int mode){
 * @Parameters: in: ----
 *              out: user_login - user credentials
 * @Return: User structure with the user credentials
+* @Author: Ivan Fernandez
 *****************************************************/
 User getUserLogin() {
     User user_login;               //Gets the user email and password for then to be checked
@@ -198,6 +206,7 @@ User getUserLogin() {
 *                  users - dynamic array with the users from the database
 *              out: login - current user using the program
 * @Return: User structure with the user credentials
+* @Author: Ivan Fernandez
 *****************************************************/
 User checkLogin(User users[], User login, int *validation, int users_size) {
     int flag = 0;                               //Indicates if the user wit the given credentials exists in the file
@@ -237,6 +246,7 @@ User checkLogin(User users[], User login, int *validation, int users_size) {
 * @Parameters: in: users - dynamic array with the users from the database
 *              out: u - user information
 * @Return: To finish
+* @Author: Ivan Fernandez
 *****************************************************/
 User loginUser(User users[], int users_size, int *valid) {
     User u;             //User logged into the program
@@ -266,6 +276,12 @@ User loginUser(User users[], int users_size, int *valid) {
     return u;
 }
 
+/********************************************************************
+* @Objective: Ask user for a [Y]es [N]o answer
+* @Parameters: in: message = question/ text to display when getting user input
+* @Return: Boolean value, where true is yes and false is no
+* @Author: Ivan Fernandez
+*****************************************************/
 int askForSure(char message[]) {
     char sure[MAXCHAR];
 
@@ -292,6 +308,7 @@ int askForSure(char message[]) {
 * @Parameters: in: str - string to check
 *              out: boolean integer meaning if the given str is an integer
 * @Return: Boolean with the answer.
+* @Author: Ivan Fernandez
 *****************************************************/
 int checkInt(char str[]) {
     int i;
@@ -312,6 +329,7 @@ int checkInt(char str[]) {
 * @Parameters: in: str - string to check
 *              out: boolean integer meaning if the given string is an email
 * @Return: Boolean with the answer.
+* @Author: Ivan Fernandez
 *****************************************************/
 int checkEmail(char str[]) {
     int i, j;

@@ -58,6 +58,16 @@ Program addNewProgram(){
     return temp;
 }
 
+
+/*----------------------------------------------
+ Author: spencer
+ Input: in: programs = programs in the system
+        in: program_size = number of programs in the system
+        in: channel_name = name of the channel from programs
+                            must be displayed
+ Output: ----
+ Functionality: display all program information of a given channel
+----------------------------------------------------*/
 void displayProgramsByChannel(Program programs[], int program_size, String channel_name) {
     int i, j;
 
@@ -116,6 +126,13 @@ void displayProgramsByChannel(Program programs[], int program_size, String chann
 
 
 
+/*************************************************************************
+ * @Purpose: Display all the programs
+ * @Parameters: in: programs = all programs in the system
+ *              in: program_size = number of programs in the system
+ * @Returns: ----
+ * @Author: Ivan Fernandez
+ ************************************************************************/
 void displayPrograms(Program programs[], int program_size) {
     int i, j;
 
@@ -166,7 +183,13 @@ void displayPrograms(Program programs[], int program_size) {
 
 }
 
-
+/*************************************************************************
+ * @Purpose: Allow user to find different programs depending on a selected filter
+ * @Parameters: in: programs = all programs in the system
+ *              in: program_size = number of programs in the system
+ * @Returns: ----
+ * @Author: Ivan Fernandez
+ ************************************************************************/
 void searchByFilter(Program programs[], int program_size) {
     char tmp[MAXCHAR];                  // Used for diverse purposes, mainly check inputs format
     int temporal;                       // Same as tmp but as an integer
@@ -203,6 +226,7 @@ void searchByFilter(Program programs[], int program_size) {
 
 
         switch (menu_option) {
+            // By Category
             case 'A':
                 do {
                     printf("\nChoose a category:\n");
@@ -244,7 +268,7 @@ void searchByFilter(Program programs[], int program_size) {
 
                 break;
 
-
+            // By Duration
             case 'B':
 
                 menu_option = '.';
@@ -329,10 +353,12 @@ void searchByFilter(Program programs[], int program_size) {
 
                 break;
 
+            // By Actor
             case 'C':
                 //to be decided
                 break;
 
+            // By name
             case 'D':
 
                 printf("\nIntroduce the program's name: ");
@@ -353,6 +379,7 @@ void searchByFilter(Program programs[], int program_size) {
                 break;
 
 
+            // Go back
             case 'E' :
             default:
                 go_back = 1;
@@ -365,6 +392,14 @@ void searchByFilter(Program programs[], int program_size) {
 
 }
 
+
+/*************************************************************************
+ * @Purpose: Get programs for persistence file and load them into an array
+ * @Parameters: in: program_size = dynamic integer containing the
+ *                  number of programs in the system
+ * @Returns: Dynamic array with all programs from the file
+ * @Author: Spencer
+ ************************************************************************/
 Program* readAllPrograms(int* programs_size) {
     Program* programs;
     FILE *fp;
@@ -419,7 +454,14 @@ Program* readAllPrograms(int* programs_size) {
 
 
 
-//Saves the array into the file (rewrites the file)
+/*************************************************************************
+ * @Purpose: Rewrite persistence file with the new programs array
+ * @Parameters: in: program_size = dynamic integer containing the
+ *                  number of programs in the system
+ *              in: programs = programs to be saved in the file
+ * @Returns: ----
+ * @Author: Spencer
+ ************************************************************************/
 void saveToFile(int programs_size, Program programs[]) {
     FILE *fp;
     int i, j;
@@ -450,8 +492,20 @@ void saveToFile(int programs_size, Program programs[]) {
 }
 
 
-//Dismisses the actor from the standpoint of the program
-void dismissActor(int programs_size, Program programs[], Actor* actors, int *actors_size) {
+/*************************************************************************
+ * @Purpose: Dismiss an actor from a program
+ * @Parameters: in: program_size = dynamic integer containing the
+ *                  number of programs in the system
+ *              in: programs = programs to be saved in the file
+ *              in: actors = actors in the system
+ *              in: actors_size = number of actors in the program
+ *              in: budget = current budget of LSTelevision
+ *
+ * @Returns: Dynamic array with all programs from the file
+ * @Author: Carlos
+ * @Fixers: Spencer, Ivan Fernandez
+ ************************************************************************/
+void dismissActor(int programs_size, Program programs[], Actor* actors, int *actors_size, float *budget) {
 
     int i, j, count = 0;
     int pos;
@@ -476,10 +530,12 @@ void dismissActor(int programs_size, Program programs[], Actor* actors, int *act
         printf("There is no program with the name: %s\n", prog_name);
         return;
     }
+
     //remove the program from the actor
     strcpy(actors[pos].program, "");
     count = -1;
     j = 0;
+
     int auxpos = 0;
     for (i = 0; i < 3; i++) {
         int temp = atoi(programs[prog_pos].actors[i]);
@@ -492,5 +548,6 @@ void dismissActor(int programs_size, Program programs[], Actor* actors, int *act
         strcpy(programs[prog_pos].actors[i],programs[prog_pos].actors[i+1]);
     }
     strcpy(programs[prog_pos].actors[2],"");
+
 
 }
