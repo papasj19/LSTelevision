@@ -215,7 +215,7 @@ void displayUnemployedActors(Actor actors[], int *actors_size) {
 
     for (i=0; i<(*actors_size); i++) {
 
-        if (actors[i].program == NULL) {
+        if (strcmp(actors[i].program,"")==0) {
             printf("Actor: %d\n", actors[i].id);
             printf("\t%s %s", actors[i].name, actors[i].surname);
             printf("\tcontact: %d, %dEuros", actors[i].phone, actors[i].salary);
@@ -438,7 +438,8 @@ void manageActors(Actor *actors[], int mode, int *actors_size) {
                 }
             }
 
-            itoa(phone, token, 10);
+            //itoa(phone, token, 10);
+            snprintf(token,10,"%d",phone);
 
             break;
 

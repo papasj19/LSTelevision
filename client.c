@@ -87,16 +87,19 @@ void manageClient(User *users[], int *users_size, int mode) {
             case 1:
 
                 num_id = askForInteger("Introduce the id (number only): ");
-                itoa(num_id, id, 10);
+                //itoa(num_id, id, 10);
+                snprintf(id,10,"%d",num_id);
 
-                strcpy(tmp, "C");
+
+                strcpy(tmp, "P");
                 strcat(tmp, id);
 
                 for (i = 0; i < *users_size; i++) {
                     char to_check[MAXCHAR];
 
                     printf("CHECK1\n");
-                    strcpy(to_check, users[i]->id);
+                    printf("%s",users[i]->id );
+                    strcpy(to_check, (*users[i]).id);
                     printf("CHECK2\n");
 
                     if (!strcmp(to_check, tmp)) {
@@ -207,7 +210,9 @@ void changeUser(User *users[], int *users_size, int pos) {
         case 1:
 
             num_id = askForInteger("Introduce new user's id (numbers only): ");
-            itoa(num_id, id, 10);
+            //itoa(num_id, id, 10);
+            snprintf(id,10,"%d",num_id);
+
 
             strcpy(tmp, "C");
             strcat(tmp, id);

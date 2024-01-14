@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.21)
-project(For_Stories C)
+cmake_minimum_required(VERSION 3.27)
+project(LSTelevision C)
 
 set(CMAKE_C_STANDARD 11)
 

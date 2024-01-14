@@ -194,7 +194,7 @@ void listChannelByAudience(int channel_size, Channel channels[]){
     }
     // printing the output
     for (i = 0; i < channel_size; i++) {
-        printf("%d ", channels[i]);
+        printf("%i: %d ",i+1, channels[i].num_sub);
     }
 }
 
@@ -276,6 +276,7 @@ int deleteChannel(int channel_size, Channel channels[], int index, float *budget
 
         channel_size--;
     }
+    return 1;
 }
 
 void listChannels(int channel_size, Channel channels[]) {
