@@ -17,4 +17,6 @@ add_executable(For_Stories main.c
         channel.c
         subscribe.h
         subscribe.c
-        creditCard.c)
+        creditCard.c
+        budget.c
+        budget.h)

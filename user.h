@@ -36,6 +36,8 @@ User checkLogin(User users[], User login, int *validate, int users_size);
 User loginUser(User users[], int users_size, int *valid);
 
 
+
+
 int askForSure(char message[]);
 
 int checkInt(char str[]);

@@ -202,7 +202,7 @@ void clientMainMenu(Program** programs, int* progams_size, Channel** channels, i
     int input_choice = 0;
     CreditCard temp;
     do {
-        input_choice = askForInteger("1.Card | 2.Movies | 3.Channels | 4.Programs | 5.Exit\n> ");
+        input_choice = askForInteger("1.Card | 2.Movies | 3.Channels | 4.Programs | 5.Exit | 6.Logout\n> ");
         int flag = 0;
         switch (input_choice) {
             //card menu
@@ -271,6 +271,9 @@ void clientMainMenu(Program** programs, int* progams_size, Channel** channels, i
                 }while(flag == 0);
                 flag = 0;
                 break;
+
+            case 6:
+
         }
     }while(input_choice != 5);
 }

@@ -136,7 +136,7 @@ int checkNumActors(){
 Actor addNewActor(Actor actors[], int actors_size){
         Actor temp;                     // Actor to create
         int numbers[actors_size];       // Phone numbers of all actors
-        int unique = 0;                 // Boolean describing if the new actor's phone number is unique
+        int unique;                 // Boolean describing if the new actor's phone number is unique
         int last_id = 0;
 
         printf("Enter the name: ");
@@ -211,7 +211,7 @@ int addNewActorToFile(Actor to_be_written){
  * @Author Ivan Fernandez
  ****************/
 void displayUnemployedActors(Actor actors[], int *actors_size) {
-    int i = 0;
+    int i;
 
     for (i=0; i<(*actors_size); i++) {
 
@@ -232,7 +232,7 @@ void displayUnemployedActors(Actor actors[], int *actors_size) {
  * @Author Ivan Fernandez
  **************/
 int getActorFromUser(Actor *actors[], int *actors_size) {
-    Actor trash;
+    //Actor trash;
     char tmp_id[MAXCHAR];
     int position;
     int i = 0, flag = 0;
